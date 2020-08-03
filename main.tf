@@ -2,6 +2,20 @@ data "ibm_is_ssh_key" "sshkey1" {
   name = "${var.ssh_key_name}"
 }
 
+resource "ibm_is_vpc_address_prefix" "vpc-ap3" {
+  name = "vpc-ap3"
+  zone = "${var.zone3}"
+  vpc  = "${ibm_is_vpc.vpc1.id}"
+  cidr = "${var.zone3_cidr}"
+}
+resource "ibm_is_subnet" "subnet3" {
+  name            = "subnet3"
+  vpc             = "${ibm_is_vpc.vpc1.id}"
+  zone            = "${var.zone3}"
+  ipv4_cidr_block = "${var.zone3_cidr}"
+  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
+}
+
 resource "ibm_is_vpc" "vpc1" {
   name = "${var.vpc_name}"
   address_prefix_management = "auto"
