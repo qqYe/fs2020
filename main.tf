@@ -110,7 +110,7 @@ resource "ibm_is_floating_ip" "floatingip3" {
 }
 
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
-  depends_on = ["ibm_is_floating_ip.floatingip1", "ibm_is_floating_ip.floatingip2"]
+  depends_on = ["ibm_is_floating_ip.floatingip1", "ibm_is_floating_ip.floatingip2", "ibm_is_floating_ip.floatingip3"]
   group     = "${ibm_is_vpc.vpc1.default_security_group}"
   direction = "inbound"
   remote    = "0.0.0.0/0"
