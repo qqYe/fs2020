@@ -17,6 +17,12 @@ variable "zone2" {
   default = "us-south-2"
   description = "Define the 2nd zone of the region"
 }
+variable "zone3" {
+  default = "eu-de-3"
+}
+variable "zone3_cidr" {
+  default = "172.16.3.0/24"
+}
 
 variable "zone1_cidr" {
   default = "172.16.1.0/24"
